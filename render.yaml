@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: fortune-cookie-bot
+    runtime: python
+    env: python
+    region: oregon          # или frankfurt, если ближе к тебе
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python bot.py"
+    envVars:
+      - key: BOT_TOKEN
+        sync: false         # важно: значение задаётся вручную при первом деплое
+    healthCheckPath: /      # не обязателен для polling-ботов, но Render требует
